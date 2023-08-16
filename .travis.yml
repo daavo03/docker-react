@@ -1,0 +1,10 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t daavo03/docker-react -f Dockerfile.dev .
+
+script:
+  # We add that final flag to make sure the npm run test auto exits when the test is done
+  - docker run daavo03/docker-react npm run test -- --coverage
